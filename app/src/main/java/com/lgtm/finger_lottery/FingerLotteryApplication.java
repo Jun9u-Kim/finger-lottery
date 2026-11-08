@@ -25,6 +25,7 @@ public final class FingerLotteryApplication extends Application {
     private boolean isSdkInitialized;
     private boolean isLoadingAd;
     private boolean startupPending;
+    private NativeAd preloadedStartupAd;
     private Activity startupActivity;
     private Runnable startupCallback;
     private Runnable startupTimeout;
@@ -36,8 +37,16 @@ public final class FingerLotteryApplication extends Application {
 
     public void setAdsAllowed(boolean allowed) {
         adsAllowed = allowed;
-        if (allowed) initializeSdk();
-        else if (startupPending) finishStartup();
+        if (allowed) {
+            initializeSdk();
+            loadNativeAdIfReady();
+        } else {
+            if (preloadedStartupAd != null) {
+                preloadedStartupAd.destroy();
+                preloadedStartupAd = null;
+            }
+            if (startupPending) finishStartup();
+        }
     }
 
     public void showStartupNativeAd(@NonNull Activity activity, @NonNull Runnable onFinished) {
@@ -50,6 +59,12 @@ public final class FingerLotteryApplication extends Application {
         startupPending = true;
         startupTimeout = this::finishStartup;
         mainHandler.postDelayed(startupTimeout, STARTUP_AD_WAIT_MS);
+        if (preloadedStartupAd != null) {
+            NativeAd ad = preloadedStartupAd;
+            preloadedStartupAd = null;
+            showNativeAd(ad);
+            return;
+        }
         initializeSdk();
         loadNativeAdIfReady();
     }
@@ -65,22 +80,20 @@ public final class FingerLotteryApplication extends Application {
     }
 
     private void loadNativeAdIfReady() {
-        if (!adsAllowed || !isSdkInitialized || isLoadingAd || !startupPending) return;
-        Activity activity = startupActivity;
-        if (!isActivityUsable(activity)) {
-            finishStartup();
-            return;
-        }
+        if (!adsAllowed || !isSdkInitialized || isLoadingAd || preloadedStartupAd != null) return;
         isLoadingAd = true;
         AdLoader loader = new AdLoader.Builder(this, getString(R.string.admob_native_ad_unit_id))
                 .forNativeAd(ad -> {
                     isLoadingAd = false;
-                    if (!adsAllowed || !startupPending || !isActivityUsable(startupActivity)) {
+                    if (!adsAllowed) {
                         ad.destroy();
                         return;
                     }
-                    if (startupTimeout != null) mainHandler.removeCallbacks(startupTimeout);
-                    NativeAdDialog.show(startupActivity, ad, "Close", this::finishStartup);
+                    if (!startupPending || !isActivityUsable(startupActivity)) {
+                        preloadedStartupAd = ad;
+                        return;
+                    }
+                    showNativeAd(ad);
                 })
                 .withAdListener(new com.google.android.gms.ads.AdListener() {
                     @Override
@@ -92,6 +105,25 @@ public final class FingerLotteryApplication extends Application {
                 })
                 .build();
         loader.loadAd(new AdRequest.Builder().build());
+    }
+
+    private void showNativeAd(@NonNull NativeAd ad) {
+        Activity activity = startupActivity;
+        if (!startupPending || !isActivityUsable(activity)) {
+            ad.destroy();
+            return;
+        }
+        if (startupTimeout != null) {
+            mainHandler.removeCallbacks(startupTimeout);
+            startupTimeout = null;
+        }
+        try {
+            NativeAdDialog.show(activity, ad, "Close", this::finishStartup);
+        } catch (RuntimeException error) {
+            Log.e(TAG, "Could not display native ad; continuing into the app.", error);
+            ad.destroy();
+            finishStartup();
+        }
     }
 
     private boolean isActivityUsable(Activity activity) {

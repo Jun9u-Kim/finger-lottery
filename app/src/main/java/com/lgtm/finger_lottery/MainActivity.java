@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestConsentThenStart(SharedPreferences preferences, boolean showStartupAd) {
         ConsentRequestParameters parameters = new ConsentRequestParameters.Builder().build();
+        FingerLotteryApplication ads = (FingerLotteryApplication) getApplication();
         consentInformation.requestConsentInfoUpdate(
                 this,
                 parameters,
@@ -85,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
                     updatePrivacyOptionsRequirement();
                     continueAfterConsent(preferences, showStartupAd);
                 });
+        // UMP retains the prior session's consent decision. Start preparing
+        // the ad now so it can be shown as soon as the consent flow completes.
+        if (consentInformation.canRequestAds()) {
+            ads.setAdsAllowed(true);
+        }
     }
 
     private void continueAfterConsent(SharedPreferences preferences, boolean showStartupAd) {

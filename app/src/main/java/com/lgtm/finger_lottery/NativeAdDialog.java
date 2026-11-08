@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
@@ -29,8 +30,9 @@ final class NativeAdDialog {
         Dialog dialog = new Dialog(activity);
         LinearLayout card = new LinearLayout(activity);
         card.setOrientation(LinearLayout.VERTICAL);
-        card.setPadding(dp(activity, 20), dp(activity, 18), dp(activity, 20), dp(activity, 18));
+        card.setPadding(dp(activity, 16), dp(activity, 14), dp(activity, 16), dp(activity, 14));
         card.setBackground(roundRect(0xFF11151D, dp(activity, 22)));
+        card.setLayoutParams(new android.view.ViewGroup.LayoutParams(-1, -2));
 
         NativeAdView adView = new NativeAdView(activity);
         adView.setBackground(roundRect(0xFF191E28, dp(activity, 16)));
@@ -74,9 +76,9 @@ final class NativeAdDialog {
         adView.setHeadlineView(headline);
 
         MediaView media = new MediaView(activity);
-        media.setMinimumHeight(dp(activity, 150));
-        LinearLayout.LayoutParams mediaParams = new LinearLayout.LayoutParams(-1, dp(activity, 180));
-        mediaParams.topMargin = dp(activity, 12);
+        media.setMinimumHeight(dp(activity, 120));
+        LinearLayout.LayoutParams mediaParams = new LinearLayout.LayoutParams(-1, dp(activity, 140));
+        mediaParams.topMargin = dp(activity, 10);
         assets.addView(media, mediaParams);
         adView.setMediaView(media);
 
@@ -87,7 +89,7 @@ final class NativeAdDialog {
             body.setTextSize(14);
             body.setMaxLines(3);
             LinearLayout.LayoutParams bodyParams = new LinearLayout.LayoutParams(-1, -2);
-            bodyParams.topMargin = dp(activity, 10);
+            bodyParams.topMargin = dp(activity, 8);
             assets.addView(body, bodyParams);
             adView.setBodyView(body);
         }
@@ -97,13 +99,28 @@ final class NativeAdDialog {
             cta.setText(ad.getCallToAction());
             cta.setAllCaps(false);
             LinearLayout.LayoutParams ctaParams = new LinearLayout.LayoutParams(-1, dp(activity, 48));
-            ctaParams.topMargin = dp(activity, 12);
+            ctaParams.topMargin = dp(activity, 10);
             assets.addView(cta, ctaParams);
             adView.setCallToActionView(cta);
         }
 
         adView.setNativeAd(ad);
-        card.addView(adView, new LinearLayout.LayoutParams(-1, -2));
+        int maxAdHeight = Math.round(activity.getResources().getDisplayMetrics().heightPixels * 0.58f);
+        NestedScrollView adScroll = new NestedScrollView(activity) {
+            @Override
+            protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+                int cappedHeight = maxAdHeight;
+                if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.UNSPECIFIED) {
+                    cappedHeight = Math.min(cappedHeight, MeasureSpec.getSize(heightMeasureSpec));
+                }
+                int cappedHeightSpec = MeasureSpec.makeMeasureSpec(cappedHeight, MeasureSpec.AT_MOST);
+                super.onMeasure(widthMeasureSpec, cappedHeightSpec);
+            }
+        };
+        adScroll.setFillViewport(false);
+        adScroll.setClipToPadding(false);
+        adScroll.addView(adView, new android.view.ViewGroup.LayoutParams(-1, -2));
+        card.addView(adScroll, new LinearLayout.LayoutParams(-1, -2));
 
         TextView close = new TextView(activity);
         close.setText(closeLabel);
@@ -112,8 +129,8 @@ final class NativeAdDialog {
         close.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         close.setGravity(Gravity.CENTER);
         close.setBackground(roundRect(0xFF9AFBDE, dp(activity, 16)));
-        LinearLayout.LayoutParams closeParams = new LinearLayout.LayoutParams(-1, dp(activity, 52));
-        closeParams.topMargin = dp(activity, 14);
+        LinearLayout.LayoutParams closeParams = new LinearLayout.LayoutParams(-1, dp(activity, 48));
+        closeParams.topMargin = dp(activity, 10);
         card.addView(close, closeParams);
 
         dialog.setContentView(card);
@@ -128,8 +145,9 @@ final class NativeAdDialog {
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawableResource(android.R.color.transparent);
-            window.setLayout((int) (activity.getResources().getDisplayMetrics().widthPixels * 0.90f),
+            window.setLayout((int) (activity.getResources().getDisplayMetrics().widthPixels * 0.86f),
                     WindowManager.LayoutParams.WRAP_CONTENT);
+            window.setGravity(Gravity.CENTER);
         }
     }
 

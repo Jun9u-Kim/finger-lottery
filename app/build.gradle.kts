@@ -12,8 +12,8 @@ android {
         applicationId = "com.lgtm.finger_lottery"
         minSdk = 24
         targetSdk = 37
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 5
+        versionName = "1.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,8 +21,10 @@ android {
     buildTypes {
         release {
             optimization {
-                enable = true
-                packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
+                // WorkManager/Room are initialized by AndroidX Startup in the
+                // Google Mobile Ads SDK. R8 optimization here breaks that
+                // reflective database creation at application startup.
+                enable = false
             }
         }
     }
