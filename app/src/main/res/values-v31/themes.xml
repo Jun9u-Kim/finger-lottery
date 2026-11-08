@@ -1,0 +1,21 @@
+<resources>
+    <style name="Theme.FingerLottery" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">#9AFBDE</item>
+        <item name="colorPrimaryVariant">#47CDB0</item>
+        <item name="colorOnPrimary">#07110E</item>
+        <item name="colorSecondary">#9380FF</item>
+        <item name="colorSecondaryVariant">#6954E8</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowSplashScreenAnimationDuration">450</item>
+        <item name="android:statusBarColor">#05070B</item>
+        <item name="android:navigationBarColor">#05070B</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
