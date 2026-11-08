@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Choisir le nombre de gagnants</string><string name="count_max">Choisissez jusqu’à 20 gagnants</string><string name="apply">Appliquer</string>
+    <string name="add_one">Ajouter un gagnant</string><string name="remove_one">Retirer un gagnant</string><string name="selected_count">Gagnants sélectionnés : %1$d</string>
+    <string name="guide_title">Tirage au sort avec les doigts</string><string name="guide_intro">Choisissez le nombre de gagnants, puis posez vos doigts sur l’écran.</string>
+    <string name="guide_step1_title">Définir le nombre de gagnants</string><string name="guide_step1_detail">Touchez le nombre sous SELECT WINNERS en bas.</string>
+    <string name="guide_step2_title">Posez vos doigts et gardez-les en place</string><string name="guide_step2_detail">Gardez-les 3 secondes pour lancer le compte à rebours.</string>
+    <string name="guide_step3_title">Consulter le résultat après le compte à rebours</string><string name="guide_step3_detail">Les doigts choisis et leur rang s’affichent avec une vibration.</string>
+    <string name="start">Commencer</string><string name="back">Retour</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Posez vos doigts sur l’écran</string><string name="prompt_need_one">Posez 1 doigt sur l’écran</string><string name="prompt_need_many">Posez %1$d doigts sur l’écran</string><string name="prompt_need_detail">Actuellement %1$d · Max. 20</string>
+    <string name="hold">Gardez les doigts en place</string><string name="checking">Vérification du nombre de doigts</string><string name="selection_complete">Sélection terminée</string><string name="restart">↻   Recommencer</string><string name="please_wait">Veuillez patienter</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Posez vos doigts sur l’écran pour commencer. Touchez le nombre en bas pour modifier les gagnants. Touchez ? en haut pour afficher les instructions.</string>
+    <string name="access_need_more">%1$d doigts sont nécessaires. %2$d sont sur l’écran.</string><string name="access_waiting">%1$d doigts sont sur l’écran. Gardez-les 3 secondes pour lancer le tirage.</string>
+    <string name="access_countdown">Le compte à rebours a commencé. Le tirage continue à partir des positions verrouillées.</string><string name="access_done">Le tirage est terminé et le résultat est affiché. Touchez Recommencer pour un nouveau tirage.</string>
+    <string name="language_accessibility">Sélecteur de langue. Changez de langue en haut à droite.</string><string name="language_sheet_title">Choisir la langue</string><string name="language_sheet_description">Sélectionnez la langue à utiliser.</string>
+</resources>

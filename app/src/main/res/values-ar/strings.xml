@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">اختر عدد الفائزين</string><string name="count_max">اختر ما يصل إلى 20 فائزًا</string><string name="apply">تطبيق</string>
+    <string name="add_one">إضافة فائز واحد</string><string name="remove_one">إزالة فائز واحد</string><string name="selected_count">الفائزون المختارون: %1$d</string>
+    <string name="guide_title">قرعة الأصابع</string><string name="guide_intro">اختر عدد الفائزين، ثم ضع أصابعك على الشاشة.</string>
+    <string name="guide_step1_title">حدد عدد الفائزين</string><string name="guide_step1_detail">اضغط على الرقم أسفل SELECT WINNERS في أسفل الشاشة.</string>
+    <string name="guide_step2_title">ضع أصابعك وانتظر</string><string name="guide_step2_detail">استمر 3 ثوانٍ لبدء العد التنازلي.</string>
+    <string name="guide_step3_title">شاهد النتيجة بعد العد التنازلي</string><string name="guide_step3_detail">ستظهر الأصابع المختارة وترتيبها مع اهتزاز.</string>
+    <string name="start">ابدأ</string><string name="back">رجوع</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">ضع أصابعك على الشاشة</string><string name="prompt_need_one">ضع إصبعًا واحدًا على الشاشة</string><string name="prompt_need_many">ضع %1$d أصابع على الشاشة</string><string name="prompt_need_detail">حاليًا %1$d · الحد الأقصى 20</string>
+    <string name="hold">أبقِ أصابعك ثابتة</string><string name="checking">جارٍ التحقق من عدد الأصابع</string><string name="selection_complete">اكتمل الاختيار</string><string name="restart">↻   ابدأ من جديد</string><string name="please_wait">يرجى الانتظار</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. ضع أصابعك على الشاشة للبدء. اضغط على العدد أدناه لتغيير عدد الفائزين. اضغط على ? بالأعلى لعرض التعليمات.</string>
+    <string name="access_need_more">يلزم %1$d أصابع. يوجد %2$d على الشاشة الآن.</string><string name="access_waiting">يوجد %1$d أصابع على الشاشة. استمر 3 ثوانٍ لبدء القرعة.</string>
+    <string name="access_countdown">بدأ العد التنازلي. ستستمر القرعة وفق مواقع الأصابع المثبتة.</string><string name="access_done">اكتملت القرعة والنتيجة ظاهرة. اضغط على ابدأ من جديد لإجراء قرعة أخرى.</string>
+    <string name="language_accessibility">محدد اللغة. غيّر اللغة من أعلى اليمين.</string><string name="language_sheet_title">اختر اللغة</string><string name="language_sheet_description">حدد اللغة التي تريد استخدامها.</string>
+</resources>

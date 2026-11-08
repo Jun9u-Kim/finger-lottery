@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">فاتحین کی تعداد</string><string name="count_max">زیادہ سے زیادہ 20 فاتح منتخب کریں</string><string name="apply">لاگو کریں</string>
+    <string name="add_one">ایک فاتح بڑھائیں</string><string name="remove_one">ایک فاتح کم کریں</string><string name="selected_count">منتخب فاتحین: %1$d</string>
+    <string name="guide_title">فنگر لاٹری</string><string name="guide_intro">پہلے فاتحین کی تعداد منتخب کریں، پھر اسکرین پر انگلیاں رکھیں۔</string>
+    <string name="guide_step1_title">فاتحین کی تعداد منتخب کریں</string><string name="guide_step1_detail">نیچے SELECT WINNERS کے نمبر کو دبائیں۔</string>
+    <string name="guide_step2_title">انگلیاں رکھیں اور تھامے رکھیں</string><string name="guide_step2_detail">3 سیکنڈ تک تھامیں تاکہ الٹی گنتی شروع ہو۔</string>
+    <string name="guide_step3_title">الٹی گنتی کے بعد نتیجہ دیکھیں</string><string name="guide_step3_detail">وائبریشن کے ساتھ منتخب انگلیاں اور ان کی درجہ بندی دکھائی جائے گی۔</string>
+    <string name="start">شروع کریں</string><string name="back">واپس</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">اسکرین پر انگلیاں رکھیں</string><string name="prompt_need_one">اسکرین پر ایک انگلی رکھیں</string><string name="prompt_need_many">اسکرین پر %1$d انگلیاں رکھیں</string><string name="prompt_need_detail">ابھی %1$d · زیادہ سے زیادہ 20</string>
+    <string name="hold">انگلیاں تھامے رکھیں</string><string name="checking">انگلیوں کی گنتی ہو رہی ہے</string><string name="selection_complete">انتخاب مکمل</string><string name="restart">↻   دوبارہ شروع کریں</string><string name="please_wait">براہ کرم انتظار کریں</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery۔ شروع کرنے کے لیے اسکرین پر انگلیاں رکھیں۔ فاتحین کی تعداد بدلنے کے لیے نیچے نمبر دبائیں۔ ہدایات کے لیے اوپر ? دبائیں۔</string>
+    <string name="access_need_more">%1$d انگلیاں درکار ہیں۔ اسکرین پر ابھی %2$d ہیں۔</string><string name="access_waiting">اسکرین پر %1$d انگلیاں ہیں۔ قرعہ شروع کرنے کے لیے 3 سیکنڈ تک تھامیں۔</string>
+    <string name="access_countdown">الٹی گنتی شروع ہوگئی۔ قرعہ مقفل انگلیوں کی جگہ سے جاری رہے گا۔</string><string name="access_done">قرعہ مکمل ہوگیا۔ نتیجہ دکھایا گیا ہے۔ نیا قرعہ شروع کرنے کے لیے دوبارہ شروع کریں دبائیں۔</string>
+    <string name="language_accessibility">زبان کا انتخاب۔ اوپر دائیں جانب سے زبان بدلیں۔</string><string name="language_sheet_title">زبان منتخب کریں</string><string name="language_sheet_description">استعمال کے لیے زبان منتخب کریں۔</string>
+</resources>

@@ -33,9 +33,10 @@ public class NeonLotteryView extends View {
     public interface Listener {
         void onEditCountRequested();
         void onHelpRequested();
+        void onLanguageRequested();
     }
 
-    private static final int BG = Color.rgb(5, 7, 11);
+    private static final int BG = Color.BLACK;
     private static final int SURFACE = Color.rgb(17, 22, 31);
     private static final int MUTED = Color.rgb(134, 143, 158);
     private static final int WHITE = Color.rgb(241, 243, 248);
@@ -77,6 +78,8 @@ public class NeonLotteryView extends View {
 
     private int targetCount = 1;
     private int roundTargetCount = 1;
+    private String languageTag = "ko";
+    private Context languageContext;
     private Phase phase = Phase.EMPTY;
     private long stableSince = 0L;
     private long countdownSince = 0L;
@@ -88,12 +91,28 @@ public class NeonLotteryView extends View {
     public NeonLotteryView(Context context, Listener listener) {
         super(context);
         this.listener = listener;
+        languageContext = context;
         density = getResources().getDisplayMetrics().density;
         setLayerType(View.LAYER_TYPE_HARDWARE, null);
         setClickable(true);
         setFocusable(true);
-        setContentDescription("핑거 로터리. 화면에 손가락을 올리세요. 아래 인원 수를 눌러 선택할 수를 편집할 수 있습니다. 상단 물음표에서 사용 방법을 볼 수 있습니다.");
+        updateAccessibilityDescription();
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
+    }
+
+    public void setLanguage(String languageTag, Context languageContext) {
+        this.languageTag = languageTag;
+        this.languageContext = languageContext;
+        updateAccessibilityDescription();
+        invalidate();
+    }
+
+    private String text(int stringId) {
+        return languageContext.getString(stringId);
+    }
+
+    private String text(int stringId, Object... formatArgs) {
+        return languageContext.getString(stringId, formatArgs);
     }
 
     public void setTargetCount(int count) {
@@ -147,26 +166,12 @@ public class NeonLotteryView extends View {
     }
 
     private void drawAtmosphere(Canvas canvas, float w, float top, float bottom) {
-        paint.setStyle(Paint.Style.FILL);
-        paint.setShader(new RadialGradient(w * 0.54f, (top + bottom) * 0.48f,
-                Math.max(w, bottom - top) * 0.64f,
-                new int[]{0x10213B52, 0x08131F2C, 0x0005070B}, null, Shader.TileMode.CLAMP));
-        canvas.drawRect(0, 0, w, getHeight(), paint);
+        // Keep the screen edges uniform; decoration should not create a visible rim.
         paint.setShader(null);
-        paint.setColor(0xFF080B11);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(dp(1));
-        float grid = dp(26);
-        for (int x = 0; x < w; x += grid) {
-            canvas.drawLine(x, top + dp(100), x, bottom - dp(116), paint);
-        }
-        paint.setColor(0xFF090C12);
-        for (float y = top + dp(100); y < bottom - dp(116); y += grid) {
-            canvas.drawLine(dp(18), y, w - dp(18), y, paint);
-        }
         paint.setStyle(Paint.Style.FILL);
+        paint.setColor(BG);
+        canvas.drawColor(BG);
     }
-
     private void drawHeader(Canvas canvas, float w, float top, long now) {
         float left = dp(24);
         float logoX = left + dp(17);
@@ -196,11 +201,29 @@ public class NeonLotteryView extends View {
         paint.setColor(0xFF747D8D);
         canvas.drawText("LET THE FINGERTIPS DECIDE", left + dp(43), top + dp(43), paint);
 
-        float helpX = w - dp(42);
+        float languageLeft = w - dp(119);
+        float languageRight = w - dp(55);
+        rect.set(languageLeft, top + dp(15), languageRight, top + dp(43));
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(0xFF171D27);
+        canvas.drawRoundRect(rect, dp(14), dp(14), paint);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(dp(1));
         paint.setColor(0xFF303846);
-        canvas.drawCircle(helpX, top + dp(29), dp(18), paint);
+        canvas.drawRoundRect(rect, dp(14), dp(14), paint);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+        paint.setTextSize(dp(10));
+        paint.setColor(0xFF9AFBDE);
+        canvas.drawText(AppLanguage.find(languageTag).code + "  ▾",
+                (languageLeft + languageRight) * 0.5f, top + dp(33), paint);
+
+        float helpX = w - dp(25);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(dp(1));
+        paint.setColor(0xFF303846);
+        canvas.drawCircle(helpX, top + dp(29), dp(15), paint);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
@@ -326,13 +349,17 @@ public class NeonLotteryView extends View {
         float titleY = centerY;
         if (phase == Phase.EMPTY) {
             drawSoftOrb(canvas, centerX, centerY - dp(38));
-            drawCentered(canvas, "화면을 터치해 시작하세요", centerX, titleY + dp(30), 15, WHITE, true);
-            drawCentered(canvas, "손가락을 움직이면 네온 물결이 따라와요", centerX, titleY + dp(54), 11, MUTED, false);
+            drawCentered(canvas, text(R.string.prompt_empty),
+                    centerX, titleY + dp(30), 15, WHITE, true);
             return;
         }
         if (phase == Phase.NEED_MORE) {
-            drawCentered(canvas, targetCount + "개의 손가락을 올려주세요", centerX, titleY, 17, WHITE, true);
-            drawCentered(canvas, "현재 " + fingers.size() + "개 · 최대 20개", centerX, titleY + dp(25), 12, MUTED, false);
+            String prompt = targetCount == 1
+                    ? text(R.string.prompt_need_one)
+                    : text(R.string.prompt_need_many, targetCount);
+            String count = text(R.string.prompt_need_detail, fingers.size());
+            drawCentered(canvas, prompt, centerX, titleY, 17, WHITE, true);
+            drawCentered(canvas, count, centerX, titleY + dp(25), 12, MUTED, false);
             return;
         }
         if (phase == Phase.WAITING) {
@@ -349,8 +376,10 @@ public class NeonLotteryView extends View {
             canvas.drawArc(rect, -90, 360 * progress, false, paint);
             paint.setStrokeCap(Paint.Cap.BUTT);
             paint.setStyle(Paint.Style.FILL);
-            drawCentered(canvas, "그대로 유지해 주세요", centerX, titleY + dp(37), 14, WHITE, true);
-            drawCentered(canvas, "인원 확인 중", centerX, titleY + dp(57), 11, MUTED, false);
+            drawCentered(canvas, text(R.string.hold),
+                    centerX, titleY + dp(37), 14, WHITE, true);
+            drawCentered(canvas, text(R.string.checking),
+                    centerX, titleY + dp(57), 11, MUTED, false);
             return;
         }
         if (phase == Phase.COUNTDOWN) {
@@ -360,12 +389,11 @@ public class NeonLotteryView extends View {
             canvas.drawCircle(centerX, titleY, dp(106), paint);
             paint.setShader(null);
             drawCentered(canvas, String.valueOf(step), centerX, titleY + dp(38), 94, MINT, true);
-            drawCentered(canvas, "손가락을 떼어도 위치가 유지돼요", centerX, titleY + dp(76), 11, MUTED, false);
             return;
         }
         if (phase == Phase.DONE) {
-            drawCentered(canvas, "선택 완료", centerX, titleY + dp(60), 14, 0xFFFFD86A, true);
-            drawCentered(canvas, "다시 시작을 누를 때까지 결과가 유지돼요", centerX, titleY + dp(82), 11, MUTED, false);
+            drawCentered(canvas, text(R.string.selection_complete),
+                    centerX, titleY + dp(60), 30, 0xFFFFD86A, true);
         }
     }
 
@@ -411,12 +439,9 @@ public class NeonLotteryView extends View {
             paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
             paint.setTextSize(dp(13));
             paint.setColor(MINT);
-            canvas.drawText("↻   다시 시작", w * 0.5f, rect.centerY() + dp(5), paint);
+            canvas.drawText(text(R.string.restart), w * 0.5f, rect.centerY() + dp(5), paint);
         } else if (phase == Phase.COUNTDOWN) {
-            canvas.drawText("시작 위치는 고정돼 있어요", w * 0.5f, bottom - dp(99), paint);
-        } else {
-            String hint = fingers.isEmpty() ? "여러 사람이 함께 화면을 눌러주세요" : "화면에 손가락을 유지하면 자동으로 추첨해요";
-            canvas.drawText(hint, w * 0.5f, bottom - dp(99), paint);
+            canvas.drawText(text(R.string.please_wait), w * 0.5f, bottom - dp(99), paint);
         }
 
         float left = dp(20);
@@ -432,17 +457,10 @@ public class NeonLotteryView extends View {
         paint.setStyle(Paint.Style.FILL);
 
         paint.setTextAlign(Paint.Align.LEFT);
-        paint.setTextSize(dp(9));
-        paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-        paint.setColor(0xFF808A99);
-        canvas.drawText(phase == Phase.COUNTDOWN || phase == Phase.DONE ? "NEXT DRAW" : "SELECT WINNERS",
-                left + dp(18), cardTop + dp(29), paint);
-        paint.setTextSize(dp(13));
-        paint.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+        paint.setTextSize(dp(18));
+        paint.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
         paint.setColor(WHITE);
-        canvas.drawText(phase == Phase.COUNTDOWN || phase == Phase.DONE ? "다음 추첨 인원" : "선택할 손가락 수",
-                left + dp(18), cardTop + dp(51), paint);
-
+        canvas.drawText("SELECT WINNERS", left + dp(18), cardTop + dp(44), paint);
         float buttonWidth = dp(76);
         rect.set(right - buttonWidth - dp(10), cardTop + dp(10), right - dp(10), bottom - dp(18));
         paint.setColor(0xFF202933);
@@ -485,8 +503,8 @@ public class NeonLotteryView extends View {
             for (Finger finger : fingers.values()) {
                 frozenFingers.add(new Finger(finger.pointerId, finger.x, finger.y, finger.color, finger.bornAt));
             }
-            setContentDescription("카운트다운이 시작되었습니다. 손가락을 떼거나 움직여도 시작 위치에서 추첨이 계속됩니다.");
-            announceForAccessibility("카운트다운 시작. 손가락 위치가 고정되었습니다.");
+            updateAccessibilityDescription();
+            announceForAccessibility(text(R.string.access_countdown));
         }
         if (phase == Phase.COUNTDOWN && now - countdownSince >= 3000L) {
             chooseWinners();
@@ -503,9 +521,9 @@ public class NeonLotteryView extends View {
         selectedRanks.clear();
         for (int i = 0; i < roundTargetCount; i++) selectedRanks.put(candidates.get(i).pointerId, i + 1);
         phase = Phase.DONE;
-        setContentDescription("추첨이 끝났습니다. 결과를 유지하고 있습니다. 다시 시작 버튼을 눌러 새 추첨을 시작하세요.");
+        updateAccessibilityDescription();
         performHaptics();
-        announceForAccessibility("추첨 완료. " + roundTargetCount + "명이 선택되었습니다.");
+        announceForAccessibility(text(R.string.selected_count, roundTargetCount));
     }
 
     private void performHaptics() {
@@ -559,13 +577,11 @@ public class NeonLotteryView extends View {
         }
         invalidate();
         if (!fingers.isEmpty()) postInvalidateOnAnimation();
-        announceForAccessibility("화면에 손가락 " + fingers.size() + "개");
+        updateAccessibilityDescription();
         if (phase == Phase.NEED_MORE) {
-            setContentDescription(targetCount + "개의 손가락이 필요합니다. 현재 " + fingers.size() + "개가 화면에 있습니다.");
+            announceForAccessibility(text(R.string.access_need_more, targetCount, fingers.size()));
         } else if (phase == Phase.WAITING) {
-            setContentDescription("화면에 손가락 " + fingers.size() + "개. 3초간 유지하면 추첨이 시작됩니다.");
-        } else {
-            setContentDescription("핑거 로터리. 화면을 누르면 손가락 위치에 네온 물결이 생깁니다. 하단에서 선택할 인원을 바꿀 수 있습니다.");
+            announceForAccessibility(text(R.string.access_waiting, fingers.size()));
         }
     }
 
@@ -576,8 +592,8 @@ public class NeonLotteryView extends View {
         phase = Phase.EMPTY;
         stableSince = 0L;
         countdownSince = 0L;
-        setContentDescription("새 추첨을 시작하려면 화면에 손가락을 올리세요.");
-        announceForAccessibility("새 추첨을 시작할 수 있습니다.");
+        updateAccessibilityDescription();
+        announceForAccessibility(text(R.string.prompt_empty));
         invalidate();
     }
 
@@ -588,8 +604,13 @@ public class NeonLotteryView extends View {
     }
 
     private boolean isHelpControl(float x, float y) {
-        return x >= getWidth() - dp(70) && y >= getPaddingTop() + dp(6)
-                && y <= getPaddingTop() + dp(54);
+        return x >= getWidth() - dp(43) && x <= getWidth() - dp(7)
+                && y >= getPaddingTop() + dp(10) && y <= getPaddingTop() + dp(48);
+    }
+
+    private boolean isLanguageControl(float x, float y) {
+        return x >= getWidth() - dp(119) && x <= getWidth() - dp(55)
+                && y >= getPaddingTop() + dp(15) && y <= getPaddingTop() + dp(43);
     }
 
     private boolean isRestartControl(float x, float y) {
@@ -607,6 +628,11 @@ public class NeonLotteryView extends View {
         float y = event.getY(index);
 
         if (action == MotionEvent.ACTION_DOWN) {
+            if (isLanguageControl(x, y)) {
+                controlPointerId = pointerId;
+                pendingControl = 4;
+                return true;
+            }
             if (isHelpControl(x, y)) {
                 controlPointerId = pointerId;
                 pendingControl = 2;
@@ -627,6 +653,11 @@ public class NeonLotteryView extends View {
         }
 
         if (action == MotionEvent.ACTION_POINTER_DOWN && controlPointerId == -1) {
+            if (isLanguageControl(x, y)) {
+                controlPointerId = pointerId;
+                pendingControl = 4;
+                return true;
+            }
             if (isHelpControl(x, y)) {
                 controlPointerId = pointerId;
                 pendingControl = 2;
@@ -662,6 +693,9 @@ public class NeonLotteryView extends View {
                     listener.onHelpRequested();
                 } else if (control == 3 && isRestartControl(x, y)) {
                     performClick();
+                } else if (control == 4 && isLanguageControl(x, y)) {
+                    super.performClick();
+                    listener.onLanguageRequested();
                 }
             }
             return true;
@@ -697,5 +731,25 @@ public class NeonLotteryView extends View {
         if (phase == Phase.DONE) restartRound();
         else listener.onEditCountRequested();
         return true;
+    }
+
+    private void updateAccessibilityDescription() {
+        int descriptionId;
+        String description;
+        if (phase == Phase.NEED_MORE) {
+            description = text(R.string.access_need_more, targetCount, fingers.size());
+        } else if (phase == Phase.WAITING) {
+            description = text(R.string.access_waiting, fingers.size());
+        } else if (phase == Phase.COUNTDOWN) {
+            descriptionId = R.string.access_countdown;
+            description = text(descriptionId);
+        } else if (phase == Phase.DONE) {
+            descriptionId = R.string.access_done;
+            description = text(descriptionId);
+        } else {
+            descriptionId = R.string.access_home;
+            description = text(descriptionId);
+        }
+        setContentDescription(description + " " + text(R.string.language_accessibility));
     }
 }

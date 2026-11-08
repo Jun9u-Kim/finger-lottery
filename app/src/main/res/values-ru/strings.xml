@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Количество победителей</string><string name="count_max">Выберите не более 20 победителей</string><string name="apply">Применить</string>
+    <string name="add_one">Добавить победителя</string><string name="remove_one">Убрать победителя</string><string name="selected_count">Выбрано победителей: %1$d</string>
+    <string name="guide_title">Жеребьёвка пальцами</string><string name="guide_intro">Сначала выберите число победителей, затем коснитесь экрана пальцами.</string>
+    <string name="guide_step1_title">Выберите число победителей</string><string name="guide_step1_detail">Нажмите на число под надписью SELECT WINNERS внизу.</string>
+    <string name="guide_step2_title">Коснитесь экрана и держите пальцы</string><string name="guide_step2_detail">Через 3 секунды начнётся обратный отсчёт.</string>
+    <string name="guide_step3_title">Посмотрите результат после отсчёта</string><string name="guide_step3_detail">Выбранные пальцы и их места появятся вместе с вибрацией.</string>
+    <string name="start">Начать</string><string name="back">Назад</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Коснитесь экрана пальцами</string><string name="prompt_need_one">Коснитесь экрана одним пальцем</string><string name="prompt_need_many">Коснитесь экрана %1$d пальцами</string><string name="prompt_need_detail">Сейчас %1$d · Максимум 20</string>
+    <string name="hold">Не убирайте пальцы</string><string name="checking">Проверяем количество пальцев</string><string name="selection_complete">Выбор завершён</string><string name="restart">↻   Начать заново</string><string name="please_wait">Подождите</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Коснитесь экрана пальцами, чтобы начать. Нажмите число внизу, чтобы изменить число победителей. Нажмите ? вверху, чтобы открыть инструкцию.</string>
+    <string name="access_need_more">Нужно пальцев: %1$d. Сейчас на экране: %2$d.</string><string name="access_waiting">На экране %1$d пальцев. Удерживайте их 3 секунды, чтобы начать жеребьёвку.</string>
+    <string name="access_countdown">Начался обратный отсчёт. Жеребьёвка продолжится по зафиксированным позициям пальцев.</string><string name="access_done">Жеребьёвка завершена. Результат показан. Нажмите «Начать заново», чтобы провести новый розыгрыш.</string>
+    <string name="language_accessibility">Выбор языка. Измените язык в правом верхнем углу.</string><string name="language_sheet_title">Выберите язык</string><string name="language_sheet_description">Выберите язык интерфейса.</string>
+</resources>

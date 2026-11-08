@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">选择中奖人数</string><string name="count_max">最多可选择 20 位中奖者</string><string name="apply">应用</string>
+    <string name="add_one">增加一位中奖者</string><string name="remove_one">减少一位中奖者</string><string name="selected_count">已选中奖人数：%1$d</string>
+    <string name="guide_title">手指抽签</string><string name="guide_intro">先选择中奖人数，然后把手指放到屏幕上。</string>
+    <string name="guide_step1_title">设置中奖人数</string><string name="guide_step1_detail">点击底部 SELECT WINNERS 下方的数字。</string>
+    <string name="guide_step2_title">放上手指并保持不动</string><string name="guide_step2_detail">保持 3 秒后将开始倒计时。</string>
+    <string name="guide_step3_title">倒计时结束后查看结果</string><string name="guide_step3_detail">系统会震动，并显示中奖手指及其排名。</string>
+    <string name="start">开始</string><string name="back">返回</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">请把手指放到屏幕上</string><string name="prompt_need_one">请放上 1 根手指</string><string name="prompt_need_many">请放上 %1$d 根手指</string><string name="prompt_need_detail">当前 %1$d · 最多 20</string>
+    <string name="hold">请保持不动</string><string name="checking">正在确认人数</string><string name="selection_complete">选择完成</string><string name="restart">↻   重新开始</string><string name="please_wait">请稍候</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery。把手指放到屏幕上即可开始。点击下方人数可修改中奖人数。点击右上角问号查看说明。</string>
+    <string name="access_need_more">还需要 %1$d 根手指，目前屏幕上有 %2$d 根。</string><string name="access_waiting">屏幕上有 %1$d 根手指。保持 3 秒即可开始抽签。</string>
+    <string name="access_countdown">倒计时已开始。即使移开手指，抽签仍会按锁定的位置继续。</string><string name="access_done">抽签完成，结果已显示。点击重新开始进行新一轮抽签。</string>
+    <string name="language_accessibility">语言选择器。点击右上角可更改语言。</string><string name="language_sheet_title">选择语言</string><string name="language_sheet_description">请选择要使用的语言。</string>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">تعداد برندگان</string><string name="count_max">حداکثر ۲۰ برنده انتخاب کنید</string><string name="apply">اعمال</string>
+    <string name="add_one">افزودن یک برنده</string><string name="remove_one">حذف یک برنده</string><string name="selected_count">برندگان انتخاب‌شده: %1$d</string>
+    <string name="guide_title">قرعه‌کشی با انگشت</string><string name="guide_intro">تعداد برندگان را انتخاب کنید، سپس انگشت‌ها را روی صفحه بگذارید.</string>
+    <string name="guide_step1_title">تعداد برندگان را انتخاب کنید</string><string name="guide_step1_detail">عدد زیر SELECT WINNERS در پایین صفحه را لمس کنید.</string>
+    <string name="guide_step2_title">انگشت‌ها را بگذارید و نگه دارید</string><string name="guide_step2_detail">۳ ثانیه نگه دارید تا شمارش معکوس شروع شود.</string>
+    <string name="guide_step3_title">پس از شمارش معکوس نتیجه را ببینید</string><string name="guide_step3_detail">انگشت‌های انتخاب‌شده و رتبهٔ آن‌ها همراه با لرزش نمایش داده می‌شود.</string>
+    <string name="start">شروع</string><string name="back">بازگشت</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">انگشت‌ها را روی صفحه بگذارید</string><string name="prompt_need_one">یک انگشت روی صفحه بگذارید</string><string name="prompt_need_many">%1$d انگشت روی صفحه بگذارید</string><string name="prompt_need_detail">اکنون %1$d · حداکثر ۲۰</string>
+    <string name="hold">انگشت‌ها را نگه دارید</string><string name="checking">در حال بررسی تعداد انگشت‌ها</string><string name="selection_complete">انتخاب انجام شد</string><string name="restart">↻   شروع دوباره</string><string name="please_wait">لطفاً صبر کنید</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. برای شروع انگشت‌ها را روی صفحه بگذارید. برای تغییر تعداد برندگان، عدد پایین را لمس کنید. برای راهنما، ? بالا را لمس کنید.</string>
+    <string name="access_need_more">به %1$d انگشت نیاز است. اکنون %2$d انگشت روی صفحه است.</string><string name="access_waiting">%1$d انگشت روی صفحه است. برای شروع قرعه ۳ ثانیه نگه دارید.</string>
+    <string name="access_countdown">شمارش معکوس شروع شد. قرعه از موقعیت‌های ثابت‌شده ادامه پیدا می‌کند.</string><string name="access_done">قرعه کامل شد و نتیجه نمایش داده می‌شود. برای قرعهٔ جدید شروع دوباره را لمس کنید.</string>
+    <string name="language_accessibility">انتخاب زبان. زبان را از بالا سمت راست تغییر دهید.</string><string name="language_sheet_title">انتخاب زبان</string><string name="language_sheet_description">زبان موردنظر برای استفاده را انتخاب کنید.</string>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">विजेताओं की संख्या</string><string name="count_max">अधिकतम 20 विजेता चुनें</string><string name="apply">लागू करें</string>
+    <string name="add_one">एक विजेता जोड़ें</string><string name="remove_one">एक विजेता हटाएँ</string><string name="selected_count">चुने गए विजेता: %1$d</string>
+    <string name="guide_title">Finger Lottery</string><string name="guide_intro">विजेताओं की संख्या चुनें, फिर स्क्रीन पर उंगलियाँ रखें।</string>
+    <string name="guide_step1_title">विजेताओं की संख्या चुनें</string><string name="guide_step1_detail">नीचे SELECT WINNERS के नंबर पर टैप करें।</string>
+    <string name="guide_step2_title">उंगलियाँ रखकर थामे रहें</string><string name="guide_step2_detail">3 सेकंड तक थामे रखें, फिर उलटी गिनती शुरू होगी।</string>
+    <string name="guide_step3_title">उलटी गिनती के बाद नतीजा देखें</string><string name="guide_step3_detail">कंपन के साथ चुनी गई उंगलियाँ और उनकी रैंक दिखाई देंगी।</string>
+    <string name="start">शुरू करें</string><string name="back">वापस</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">स्क्रीन पर उंगलियाँ रखें</string><string name="prompt_need_one">स्क्रीन पर एक उंगली रखें</string><string name="prompt_need_many">स्क्रीन पर %1$d उंगलियाँ रखें</string><string name="prompt_need_detail">अभी %1$d · अधिकतम 20</string>
+    <string name="hold">उंगलियाँ थामे रहें</string><string name="checking">उंगलियाँ जाँची जा रही हैं</string><string name="selection_complete">चयन पूरा</string><string name="restart">↻   फिर शुरू करें</string><string name="please_wait">कृपया प्रतीक्षा करें</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery। शुरू करने के लिए स्क्रीन पर उंगलियाँ रखें। विजेताओं की संख्या बदलने के लिए नीचे संख्या टैप करें। निर्देशों के लिए ऊपर ? टैप करें।</string>
+    <string name="access_need_more">%1$d उंगलियाँ चाहिए। अभी स्क्रीन पर %2$d हैं।</string><string name="access_waiting">स्क्रीन पर %1$d उंगलियाँ हैं। ड्रॉ शुरू करने के लिए 3 सेकंड तक थामे रहें।</string>
+    <string name="access_countdown">उलटी गिनती शुरू हो गई है। उंगलियों की तय जगह से ड्रॉ जारी रहेगा।</string><string name="access_done">ड्रॉ पूरा हुआ। नतीजे दिख रहे हैं। नया ड्रॉ शुरू करने के लिए फिर शुरू करें टैप करें।</string>
+    <string name="language_accessibility">भाषा चयन। ऊपर दाईं ओर से भाषा बदलें।</string><string name="language_sheet_title">भाषा चुनें</string><string name="language_sheet_description">इस्तेमाल करने के लिए भाषा चुनें।</string>
+</resources>

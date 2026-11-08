@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Chọn số người thắng</string><string name="count_max">Chọn tối đa 20 người thắng</string><string name="apply">Áp dụng</string>
+    <string name="add_one">Thêm một người thắng</string><string name="remove_one">Bớt một người thắng</string><string name="selected_count">Số người thắng đã chọn: %1$d</string>
+    <string name="guide_title">Bốc thăm bằng ngón tay</string><string name="guide_intro">Chọn số người thắng rồi đặt ngón tay lên màn hình.</string>
+    <string name="guide_step1_title">Chọn số người thắng</string><string name="guide_step1_detail">Chạm vào số bên dưới SELECT WINNERS ở cuối màn hình.</string>
+    <string name="guide_step2_title">Đặt ngón tay và giữ yên</string><string name="guide_step2_detail">Giữ trong 3 giây để bắt đầu đếm ngược.</string>
+    <string name="guide_step3_title">Xem kết quả sau khi đếm ngược</string><string name="guide_step3_detail">Ngón tay được chọn và thứ hạng sẽ hiện cùng rung phản hồi.</string>
+    <string name="start">Bắt đầu</string><string name="back">Quay lại</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Đặt ngón tay lên màn hình</string><string name="prompt_need_one">Đặt 1 ngón tay lên màn hình</string><string name="prompt_need_many">Đặt %1$d ngón tay lên màn hình</string><string name="prompt_need_detail">Hiện có %1$d · Tối đa 20</string>
+    <string name="hold">Giữ nguyên vị trí</string><string name="checking">Đang kiểm tra số ngón tay</string><string name="selection_complete">Đã chọn xong</string><string name="restart">↻   Bắt đầu lại</string><string name="please_wait">Vui lòng chờ</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Đặt ngón tay lên màn hình để bắt đầu. Chạm vào số bên dưới để đổi số người thắng. Chạm ? ở trên để xem hướng dẫn.</string>
+    <string name="access_need_more">Cần %1$d ngón tay. Hiện có %2$d ngón trên màn hình.</string><string name="access_waiting">Có %1$d ngón tay trên màn hình. Giữ trong 3 giây để bắt đầu bốc thăm.</string>
+    <string name="access_countdown">Đã bắt đầu đếm ngược. Lượt bốc thăm tiếp tục theo vị trí ngón tay đã khóa.</string><string name="access_done">Đã bốc thăm xong và đang hiển thị kết quả. Chạm Bắt đầu lại để bốc thăm lượt mới.</string>
+    <string name="language_accessibility">Bộ chọn ngôn ngữ. Đổi ngôn ngữ ở góc trên bên phải.</string><string name="language_sheet_title">Chọn ngôn ngữ</string><string name="language_sheet_description">Chọn ngôn ngữ bạn muốn sử dụng.</string>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Anzahl der Gewinner wählen</string><string name="count_max">Wähle bis zu 20 Gewinner</string><string name="apply">Übernehmen</string>
+    <string name="add_one">Einen Gewinner hinzufügen</string><string name="remove_one">Einen Gewinner entfernen</string><string name="selected_count">Ausgewählte Gewinner: %1$d</string>
+    <string name="guide_title">Finger-Lotterie</string><string name="guide_intro">Wähle die Anzahl der Gewinner und lege dann deine Finger auf den Bildschirm.</string>
+    <string name="guide_step1_title">Anzahl der Gewinner festlegen</string><string name="guide_step1_detail">Tippe unten auf die Zahl unter SELECT WINNERS.</string>
+    <string name="guide_step2_title">Finger auflegen und ruhig halten</string><string name="guide_step2_detail">Halte sie 3 Sekunden, um den Countdown zu starten.</string>
+    <string name="guide_step3_title">Ergebnis nach dem Countdown ansehen</string><string name="guide_step3_detail">Die ausgewählten Finger und ihre Plätze werden mit Vibration angezeigt.</string>
+    <string name="start">Los geht’s</string><string name="back">Zurück</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Lege deine Finger auf den Bildschirm</string><string name="prompt_need_one">Lege 1 Finger auf den Bildschirm</string><string name="prompt_need_many">Lege %1$d Finger auf den Bildschirm</string><string name="prompt_need_detail">Aktuell %1$d · Max. 20</string>
+    <string name="hold">Finger ruhig halten</string><string name="checking">Finger werden gezählt</string><string name="selection_complete">Auswahl abgeschlossen</string><string name="restart">↻   Neu starten</string><string name="please_wait">Bitte warten</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Lege zum Starten deine Finger auf den Bildschirm. Tippe unten auf die Zahl, um die Gewinnerzahl zu ändern. Tippe oben auf ?, um die Anleitung zu öffnen.</string>
+    <string name="access_need_more">%1$d Finger werden benötigt. Aktuell sind %2$d auf dem Bildschirm.</string><string name="access_waiting">%1$d Finger sind auf dem Bildschirm. Halte sie 3 Sekunden, um die Ziehung zu starten.</string>
+    <string name="access_countdown">Der Countdown läuft. Die Ziehung wird anhand der fixierten Fingerpositionen fortgesetzt.</string><string name="access_done">Die Ziehung ist abgeschlossen. Das Ergebnis wird angezeigt. Tippe auf Neu starten für eine neue Ziehung.</string>
+    <string name="language_accessibility">Sprachauswahl. Ändere die Sprache oben rechts.</string><string name="language_sheet_title">Sprache auswählen</string><string name="language_sheet_description">Wähle die gewünschte Sprache aus.</string>
+</resources>

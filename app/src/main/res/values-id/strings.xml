@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Pilih jumlah pemenang</string><string name="count_max">Pilih hingga 20 pemenang</string><string name="apply">Terapkan</string>
+    <string name="add_one">Tambah satu pemenang</string><string name="remove_one">Kurangi satu pemenang</string><string name="selected_count">Pemenang terpilih: %1$d</string>
+    <string name="guide_title">Finger Lottery</string><string name="guide_intro">Pilih jumlah pemenang, lalu letakkan jari di layar.</string>
+    <string name="guide_step1_title">Tentukan jumlah pemenang</string><string name="guide_step1_detail">Ketuk angka di bawah SELECT WINNERS.</string>
+    <string name="guide_step2_title">Letakkan jari dan tahan</string><string name="guide_step2_detail">Tahan selama 3 detik untuk memulai hitung mundur.</string>
+    <string name="guide_step3_title">Lihat hasil setelah hitung mundur</string><string name="guide_step3_detail">Jari terpilih dan peringkatnya akan tampil disertai getaran.</string>
+    <string name="start">Mulai</string><string name="back">Kembali</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Letakkan jari di layar</string><string name="prompt_need_one">Letakkan 1 jari di layar</string><string name="prompt_need_many">Letakkan %1$d jari di layar</string><string name="prompt_need_detail">Saat ini %1$d · Maks. 20</string>
+    <string name="hold">Tahan jari tetap di tempat</string><string name="checking">Memeriksa jumlah jari</string><string name="selection_complete">Pemilihan selesai</string><string name="restart">↻   Mulai lagi</string><string name="please_wait">Harap tunggu</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Letakkan jari di layar untuk mulai. Ketuk jumlah di bawah untuk mengubah pemenang. Ketuk ? di atas untuk petunjuk.</string>
+    <string name="access_need_more">Diperlukan %1$d jari. Saat ini ada %2$d di layar.</string><string name="access_waiting">Ada %1$d jari di layar. Tahan selama 3 detik untuk memulai undian.</string>
+    <string name="access_countdown">Hitung mundur dimulai. Undian berlanjut dari posisi jari yang terkunci.</string><string name="access_done">Undian selesai. Hasil ditampilkan. Ketuk Mulai lagi untuk undian baru.</string>
+    <string name="language_accessibility">Pemilih bahasa. Ubah bahasa di kanan atas.</string><string name="language_sheet_title">Pilih bahasa</string><string name="language_sheet_description">Pilih bahasa yang ingin digunakan.</string>
+</resources>

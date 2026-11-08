@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">เลือกจำนวนผู้ชนะ</string><string name="count_max">เลือกผู้ชนะได้สูงสุด 20 คน</string><string name="apply">ใช้</string>
+    <string name="add_one">เพิ่มผู้ชนะหนึ่งคน</string><string name="remove_one">นำผู้ชนะออกหนึ่งคน</string><string name="selected_count">ผู้ชนะที่เลือก: %1$d คน</string>
+    <string name="guide_title">จับสลากด้วยนิ้ว</string><string name="guide_intro">เลือกจำนวนผู้ชนะ แล้ววางนิ้วบนหน้าจอ</string>
+    <string name="guide_step1_title">กำหนดจำนวนผู้ชนะ</string><string name="guide_step1_detail">แตะตัวเลขใต้ SELECT WINNERS ที่ด้านล่าง</string>
+    <string name="guide_step2_title">วางนิ้วและค้างไว้</string><string name="guide_step2_detail">ค้างไว้ 3 วินาทีเพื่อเริ่มนับถอยหลัง</string>
+    <string name="guide_step3_title">ดูผลหลังนับถอยหลัง</string><string name="guide_step3_detail">นิ้วที่ได้รับเลือกและอันดับจะแสดงพร้อมการสั่น</string>
+    <string name="start">เริ่ม</string><string name="back">กลับ</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">วางนิ้วบนหน้าจอ</string><string name="prompt_need_one">วาง 1 นิ้วบนหน้าจอ</string><string name="prompt_need_many">วาง %1$d นิ้วบนหน้าจอ</string><string name="prompt_need_detail">ขณะนี้ %1$d · สูงสุด 20</string>
+    <string name="hold">ค้างนิ้วไว้</string><string name="checking">กำลังตรวจสอบจำนวนนิ้ว</string><string name="selection_complete">เลือกเสร็จแล้ว</string><string name="restart">↻   เริ่มใหม่</string><string name="please_wait">โปรดรอสักครู่</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery วางนิ้วบนหน้าจอเพื่อเริ่ม แตะตัวเลขด้านล่างเพื่อเปลี่ยนจำนวนผู้ชนะ แตะ ? ด้านบนเพื่อดูวิธีใช้</string>
+    <string name="access_need_more">ต้องใช้นิ้ว %1$d นิ้ว ขณะนี้มี %2$d นิ้วบนหน้าจอ</string><string name="access_waiting">มีนิ้ว %1$d นิ้วบนหน้าจอ ค้างไว้ 3 วินาทีเพื่อเริ่มจับสลาก</string>
+    <string name="access_countdown">เริ่มนับถอยหลังแล้ว การจับสลากจะดำเนินต่อจากตำแหน่งนิ้วที่ล็อกไว้</string><string name="access_done">จับสลากเสร็จแล้วและกำลังแสดงผล แตะเริ่มใหม่เพื่อจับสลากรอบใหม่</string>
+    <string name="language_accessibility">ตัวเลือกภาษา เปลี่ยนภาษาได้ที่มุมขวาบน</string><string name="language_sheet_title">เลือกภาษา</string><string name="language_sheet_description">เลือกภาษาที่ต้องการใช้</string>
+</resources>

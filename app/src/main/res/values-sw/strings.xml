@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Chagua idadi ya washindi</string><string name="count_max">Chagua hadi washindi 20</string><string name="apply">Tumia</string>
+    <string name="add_one">Ongeza mshindi mmoja</string><string name="remove_one">Ondoa mshindi mmoja</string><string name="selected_count">Washindi waliochaguliwa: %1$d</string>
+    <string name="guide_title">Bahati nasibu ya vidole</string><string name="guide_intro">Chagua idadi ya washindi, kisha weka vidole vyako kwenye skrini.</string>
+    <string name="guide_step1_title">Weka idadi ya washindi</string><string name="guide_step1_detail">Gusa nambari iliyo chini ya SELECT WINNERS.</string>
+    <string name="guide_step2_title">Weka vidole na uvishikilie</string><string name="guide_step2_detail">Shikilia kwa sekunde 3 ili kuanza kuhesabu kurudi nyuma.</string>
+    <string name="guide_step3_title">Tazama matokeo baada ya hesabu</string><string name="guide_step3_detail">Vidole vilivyochaguliwa na nafasi zake vitaonekana pamoja na mtetemo.</string>
+    <string name="start">Anza</string><string name="back">Rudi</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Weka vidole vyako kwenye skrini</string><string name="prompt_need_one">Weka kidole 1 kwenye skrini</string><string name="prompt_need_many">Weka vidole %1$d kwenye skrini</string><string name="prompt_need_detail">Sasa %1$d · Upeo 20</string>
+    <string name="hold">Shikilia vidole bila kusogeza</string><string name="checking">Inakagua idadi ya vidole</string><string name="selection_complete">Uchaguzi umekamilika</string><string name="restart">↻   Anza tena</string><string name="please_wait">Tafadhali subiri</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Weka vidole kwenye skrini ili kuanza. Gusa idadi iliyo chini kubadili washindi. Gusa ? juu kuona maelekezo.</string>
+    <string name="access_need_more">Vidole %1$d vinahitajika. Kwa sasa kuna %2$d kwenye skrini.</string><string name="access_waiting">Kuna vidole %1$d kwenye skrini. Shikilia sekunde 3 kuanza droo.</string>
+    <string name="access_countdown">Kuhesabu kurudi nyuma kumeanza. Droo itaendelea kutoka nafasi za vidole zilizofungwa.</string><string name="access_done">Droo imekamilika na matokeo yanaonekana. Gusa Anza tena kwa droo mpya.</string>
+    <string name="language_accessibility">Kiteuzi cha lugha. Badili lugha kwenye kona ya juu kulia.</string><string name="language_sheet_title">Chagua lugha</string><string name="language_sheet_description">Chagua lugha unayotaka kutumia.</string>
+</resources>

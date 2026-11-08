@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Pumili ng dami ng mananalo</string><string name="count_max">Pumili ng hanggang 20 mananalo</string><string name="apply">Ilapat</string>
+    <string name="add_one">Magdagdag ng isang mananalo</string><string name="remove_one">Mag-alis ng isang mananalo</string><string name="selected_count">Mga napiling mananalo: %1$d</string>
+    <string name="guide_title">Finger Lottery</string><string name="guide_intro">Piliin kung ilan ang mananalo, saka ilagay ang mga daliri sa screen.</string>
+    <string name="guide_step1_title">Itakda ang dami ng mananalo</string><string name="guide_step1_detail">Pindutin ang numero sa ibaba ng SELECT WINNERS.</string>
+    <string name="guide_step2_title">Ilagay at panatilihin ang mga daliri</string><string name="guide_step2_detail">Panatilihin nang 3 segundo para magsimula ang countdown.</string>
+    <string name="guide_step3_title">Tingnan ang resulta pagkatapos ng countdown</string><string name="guide_step3_detail">Lalabas ang mga napiling daliri at ranggo kasabay ng pag-vibrate.</string>
+    <string name="start">Magsimula</string><string name="back">Bumalik</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Ilagay ang mga daliri sa screen</string><string name="prompt_need_one">Ilagay ang 1 daliri sa screen</string><string name="prompt_need_many">Ilagay ang %1$d daliri sa screen</string><string name="prompt_need_detail">Kasalukuyan %1$d · Max 20</string>
+    <string name="hold">Huwag igalaw ang mga daliri</string><string name="checking">Sinusuri ang dami ng daliri</string><string name="selection_complete">Tapos na ang pagpili</string><string name="restart">↻   Magsimula ulit</string><string name="please_wait">Maghintay sandali</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Ilagay ang mga daliri sa screen para magsimula. Pindutin ang bilang sa ibaba para baguhin ang mananalo. Pindutin ang ? sa itaas para sa gabay.</string>
+    <string name="access_need_more">Kailangan ng %1$d daliri. May %2$d sa screen ngayon.</string><string name="access_waiting">May %1$d daliri sa screen. Panatilihin nang 3 segundo para magsimula ang bunutan.</string>
+    <string name="access_countdown">Nagsimula na ang countdown. Magpapatuloy ang bunutan mula sa mga naka-lock na puwesto.</string><string name="access_done">Tapos na ang bunutan at ipinapakita ang resulta. Pindutin ang Magsimula ulit para sa bagong bunutan.</string>
+    <string name="language_accessibility">Tagapili ng wika. Baguhin ang wika sa kanang itaas.</string><string name="language_sheet_title">Pumili ng wika</string><string name="language_sheet_description">Piliin ang wikang gagamitin.</string>
+</resources>

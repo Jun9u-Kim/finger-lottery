@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">当選人数を選択</string><string name="count_max">当選者は最大20人まで選べます</string><string name="apply">適用</string>
+    <string name="add_one">当選者を1人増やす</string><string name="remove_one">当選者を1人減らす</string><string name="selected_count">当選者：%1$d人</string>
+    <string name="guide_title">指でくじ引き</string><string name="guide_intro">当選人数を選び、画面に指を置いてください。</string>
+    <string name="guide_step1_title">当選人数を設定する</string><string name="guide_step1_detail">画面下のSELECT WINNERSの数字をタップします。</string>
+    <string name="guide_step2_title">指を置いてそのまま待つ</string><string name="guide_step2_detail">3秒間保つとカウントダウンが始まります。</string>
+    <string name="guide_step3_title">カウントダウン後に結果を確認</string><string name="guide_step3_detail">振動とともに当選した指と順位が表示されます。</string>
+    <string name="start">始める</string><string name="back">戻る</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">画面に指を置いてください</string><string name="prompt_need_one">指を1本置いてください</string><string name="prompt_need_many">指を%1$d本置いてください</string><string name="prompt_need_detail">現在 %1$d · 最大20</string>
+    <string name="hold">そのまま押さえてください</string><string name="checking">指の数を確認中</string><string name="selection_complete">選択完了</string><string name="restart">↻   もう一度</string><string name="please_wait">お待ちください</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery。画面に指を置いて始めます。下の人数をタップすると当選人数を変更できます。使い方は右上の?をタップしてください。</string>
+    <string name="access_need_more">指が%1$d本必要です。現在画面上に%2$d本あります。</string><string name="access_waiting">画面上に指が%1$d本あります。抽選を始めるには3秒間押さえてください。</string>
+    <string name="access_countdown">カウントダウンが始まりました。指を離しても固定された位置で抽選が続きます。</string><string name="access_done">抽選が完了しました。結果が表示されています。新しい抽選は「もう一度」をタップしてください。</string>
+    <string name="language_accessibility">言語選択。右上から言語を変更できます。</string><string name="language_sheet_title">言語を選択</string><string name="language_sheet_description">使用する言語を選んでください。</string>
+</resources>

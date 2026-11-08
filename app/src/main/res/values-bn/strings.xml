@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">বিজয়ীর সংখ্যা</string><string name="count_max">সর্বোচ্চ ২০ জন বিজয়ী বেছে নিন</string><string name="apply">প্রয়োগ করুন</string>
+    <string name="add_one">একজন বিজয়ী যোগ করুন</string><string name="remove_one">একজন বিজয়ী বাদ দিন</string><string name="selected_count">নির্বাচিত বিজয়ী: %1$d</string>
+    <string name="guide_title">ফিঙ্গার লটারি</string><string name="guide_intro">প্রথমে বিজয়ীর সংখ্যা বেছে নিয়ে স্ক্রিনে আঙুল রাখুন।</string>
+    <string name="guide_step1_title">বিজয়ীর সংখ্যা ঠিক করুন</string><string name="guide_step1_detail">নিচের SELECT WINNERS সংখ্যায় চাপ দিন।</string>
+    <string name="guide_step2_title">আঙুল রেখে অপেক্ষা করুন</string><string name="guide_step2_detail">৩ সেকেন্ড ধরে রাখলে কাউন্টডাউন শুরু হবে।</string>
+    <string name="guide_step3_title">কাউন্টডাউনের পর ফল দেখুন</string><string name="guide_step3_detail">কম্পনের সঙ্গে নির্বাচিত আঙুল ও তাদের ক্রম দেখা যাবে।</string>
+    <string name="start">শুরু করুন</string><string name="back">ফিরে যান</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">স্ক্রিনে আঙুল রাখুন</string><string name="prompt_need_one">স্ক্রিনে একটি আঙুল রাখুন</string><string name="prompt_need_many">স্ক্রিনে %1$dটি আঙুল রাখুন</string><string name="prompt_need_detail">এখন %1$dটি · সর্বোচ্চ ২০টি</string>
+    <string name="hold">আঙুল ধরে রাখুন</string><string name="checking">আঙুলের সংখ্যা যাচাই হচ্ছে</string><string name="selection_complete">নির্বাচন সম্পন্ন</string><string name="restart">↻   আবার শুরু</string><string name="please_wait">অপেক্ষা করুন</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery। শুরু করতে স্ক্রিনে আঙুল রাখুন। বিজয়ীর সংখ্যা বদলাতে নিচের সংখ্যায় চাপ দিন। নির্দেশনার জন্য উপরের ? চাপ দিন।</string>
+    <string name="access_need_more">%1$dটি আঙুল দরকার। স্ক্রিনে এখন %2$dটি আছে।</string><string name="access_waiting">স্ক্রিনে %1$dটি আঙুল আছে। ড্র শুরু করতে ৩ সেকেন্ড ধরে রাখুন।</string>
+    <string name="access_countdown">কাউন্টডাউন শুরু হয়েছে। স্থির করা আঙুলের অবস্থান থেকে ড্র চলবে।</string><string name="access_done">ড্র শেষ। ফলাফল দেখানো হচ্ছে। নতুন ড্র শুরু করতে আবার শুরু চাপ দিন।</string>
+    <string name="language_accessibility">ভাষা নির্বাচন। উপরের ডান দিক থেকে ভাষা বদলান।</string><string name="language_sheet_title">ভাষা বেছে নিন</string><string name="language_sheet_description">ব্যবহারের জন্য একটি ভাষা নির্বাচন করুন।</string>
+</resources>

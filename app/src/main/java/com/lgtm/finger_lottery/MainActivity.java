@@ -7,10 +7,15 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.window.SplashScreen;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,9 +29,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "finger_lottery_settings";
     private static final String PREF_TARGET = "target_count";
+    private static final String PREF_LANGUAGE = "language";
     private static final String PREF_GUIDE_SHOWN = "guide_shown";
+    private static final long SPLASH_HOLD_MS = 1000L;
 
     private int targetCount = 1;
+    private String languageTag = "ko";
+    private Context languageContext;
     private NeonLotteryView lotteryView;
 
     @Override
@@ -35,8 +44,51 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences(PREFS, MODE_PRIVATE);
         targetCount = preferences.getInt(PREF_TARGET, 1);
+        languageTag = AppLanguage.find(preferences.getString(PREF_LANGUAGE, "ko")).tag;
+        languageContext = AppLanguage.localizedContext(this, languageTag);
         configureSystemBars();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            SplashScreen splashScreen = getSplashScreen();
+            splashScreen.setOnExitAnimationListener(splashView ->
+                    splashView.postDelayed(splashView::remove, SPLASH_HOLD_MS));
+            showMainScreen(preferences);
+        } else {
+            new Handler(Looper.getMainLooper()).postDelayed(
+                    () -> showMainScreen(preferences), SPLASH_HOLD_MS);
+        }
+    }
+
+    private void showWordmarkSplash(SharedPreferences preferences) {
+        LinearLayout splash = new LinearLayout(this);
+        splash.setOrientation(LinearLayout.VERTICAL);
+        splash.setGravity(Gravity.CENTER);
+        splash.setBackgroundColor(Color.BLACK);
+
+        TextView finger = new TextView(this);
+        finger.setText("FINGER");
+        finger.setTextColor(Color.WHITE);
+        finger.setTextSize(30);
+        finger.setLetterSpacing(0.12f);
+        finger.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+        finger.setGravity(Gravity.CENTER);
+
+        TextView lottery = new TextView(this);
+        lottery.setText("LOTTERY");
+        lottery.setTextColor(0xFF9AFBDE);
+        lottery.setTextSize(30);
+        lottery.setLetterSpacing(0.12f);
+        lottery.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+        lottery.setGravity(Gravity.CENTER);
+
+        splash.addView(finger, new LinearLayout.LayoutParams(-1, -2));
+        splash.addView(lottery, new LinearLayout.LayoutParams(-1, -2));
+        setContentView(splash);
+        new Handler(Looper.getMainLooper()).postDelayed(
+                () -> showMainScreen(preferences), SPLASH_HOLD_MS);
+    }
+    private void showMainScreen(SharedPreferences preferences) {
+        if (isFinishing() || isDestroyed()) return;
         lotteryView = new NeonLotteryView(this, new NeonLotteryView.Listener() {
             @Override
             public void onEditCountRequested() {
@@ -47,8 +99,14 @@ public class MainActivity extends AppCompatActivity {
             public void onHelpRequested() {
                 showGuideSheet(false);
             }
+
+            @Override
+            public void onLanguageRequested() {
+                showLanguageSheet(preferences);
+            }
         });
         lotteryView.setTargetCount(targetCount);
+        lotteryView.setLanguage(languageTag, languageContext);
         lotteryView.setPadding(0, 0, 0, 0);
         ViewCompat.setOnApplyWindowInsetsListener(lotteryView, (view, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -58,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(lotteryView);
 
         if (!preferences.getBoolean(PREF_GUIDE_SHOWN, false)) {
-            lotteryView.post(() -> showGuideSheet(true));
+            lotteryView.postDelayed(() -> showGuideSheet(true), 150L);
         }
     }
 
@@ -78,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         LinearLayout content = sheetContainer(this);
         addGrabber(content);
-        addText(content, "추첨 인원", 23, Color.WHITE, true, 0, 5, 0, 6);
-        addText(content, "다음 추첨에서 몇 개를 선택할까요?", 14, 0xFF969DAC, false, 0, 0, 0, 24);
+        addText(content, text(R.string.count_title), 23, Color.WHITE, true, 0, 5, 0, 18);
 
         LinearLayout picker = new LinearLayout(this);
         picker.setGravity(Gravity.CENTER);
@@ -94,23 +151,23 @@ public class MainActivity extends AppCompatActivity {
         picker.addView(plus, new LinearLayout.LayoutParams(dp(56), dp(56)));
         content.addView(picker, new LinearLayout.LayoutParams(-1, dp(78)));
 
-        addText(content, "최대 20명까지 함께할 수 있어요", 12, 0xFF777F8D, false,
+        addText(content, text(R.string.count_max), 12, 0xFF777F8D, false,
                 0, 8, 0, 24).setGravity(Gravity.CENTER);
 
         minus.setOnClickListener(v -> {
             draft[0] = Math.max(1, draft[0] - 1);
             number.setText(String.format(java.util.Locale.KOREA, "%02d", draft[0]));
-            number.setContentDescription("선택할 인원 " + draft[0] + "명");
+            number.setContentDescription(text(R.string.selected_count, draft[0]));
             minus.setAlpha(draft[0] == 1 ? 0.42f : 1f);
         });
         plus.setOnClickListener(v -> {
             draft[0] = Math.min(20, draft[0] + 1);
             number.setText(String.format(java.util.Locale.KOREA, "%02d", draft[0]));
-            number.setContentDescription("선택할 인원 " + draft[0] + "명");
+            number.setContentDescription(text(R.string.selected_count, draft[0]));
             plus.setAlpha(draft[0] == 20 ? 0.42f : 1f);
         });
 
-        TextView confirm = actionButton("적용하기");
+        TextView confirm = actionButton(text(R.string.apply));
         content.addView(confirm, new LinearLayout.LayoutParams(-1, dp(54)));
         confirm.setOnClickListener(v -> {
             targetCount = draft[0];
@@ -120,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.setContentView(content);
         dialog.show();
+        clearBottomSheetOuterBackground(dialog);
     }
 
     private void showGuideSheet(boolean firstRun) {
@@ -127,14 +185,14 @@ public class MainActivity extends AppCompatActivity {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         LinearLayout content = sheetContainer(this);
         addGrabber(content);
-        addText(content, "손가락 제비뽑기", 23, Color.WHITE, true, 0, 5, 0, 7);
-        addText(content, "모두 손가락을 올리면 추첨이 시작돼요.", 14, 0xFF969DAC, false, 0, 0, 0, 23);
+        addText(content, text(R.string.guide_title), 23, Color.WHITE, true, 0, 5, 0, 7);
+        addText(content, text(R.string.guide_intro), 14, 0xFF969DAC, false, 0, 0, 0, 23);
 
-        addGuideStep(content, "01", "화면에 손가락을 올려요", "움직이면 네온 물결이 따라와요.");
-        addGuideStep(content, "02", "그대로 잠깐 기다려요", "인원이 3초간 유지되면 카운트다운을 시작 합니다.");
-        addGuideStep(content, "03", "카운트다운 후 결과를 확인해요", "시작 위치에서 추첨하고, 다시 시작 전까지 결과가 남아요.");
+        addGuideStep(content, "01", text(R.string.guide_step1_title), text(R.string.guide_step1_detail));
+        addGuideStep(content, "02", text(R.string.guide_step2_title), text(R.string.guide_step2_detail));
+        addGuideStep(content, "03", text(R.string.guide_step3_title), text(R.string.guide_step3_detail));
 
-        TextView action = actionButton(firstRun ? "시작하기" : "알겠어요");
+        TextView action = actionButton(text(firstRun ? R.string.start : R.string.back));
         LinearLayout.LayoutParams actionParams = new LinearLayout.LayoutParams(-1, dp(54));
         actionParams.topMargin = dp(25);
         content.addView(action, actionParams);
@@ -144,13 +202,66 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.setContentView(content);
         dialog.show();
+        clearBottomSheetOuterBackground(dialog);
+    }
+
+    private void showLanguageSheet(SharedPreferences preferences) {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        LinearLayout content = sheetContainer(this);
+        addGrabber(content);
+        addText(content, text(R.string.language_sheet_title), 23, Color.WHITE, true, 0, 5, 0, 5);
+        addText(content, text(R.string.language_sheet_description), 14, 0xFF969DAC, false,
+                0, 0, 0, 16);
+
+        ScrollView scroll = new ScrollView(languageContext);
+        LinearLayout options = new LinearLayout(languageContext);
+        options.setOrientation(LinearLayout.VERTICAL);
+        for (AppLanguage.Option option : AppLanguage.OPTIONS) {
+            boolean selected = option.tag.equals(languageTag);
+            TextView row = new TextView(languageContext);
+            row.setText((selected ? "✓  " : "") + option.label);
+            row.setTextColor(selected ? 0xFF9AFBDE : 0xFFE8EAF0);
+            row.setTextSize(15);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            row.setPadding(dp(16), 0, dp(16), 0);
+            row.setBackground(roundRect(selected ? 0xFF1B2928 : 0xFF191E28, 12));
+            LinearLayout.LayoutParams rowParams = new LinearLayout.LayoutParams(-1, dp(48));
+            rowParams.bottomMargin = dp(6);
+            options.addView(row, rowParams);
+            row.setOnClickListener(v -> {
+                languageTag = option.tag;
+                languageContext = AppLanguage.localizedContext(this, languageTag);
+                preferences.edit().putString(PREF_LANGUAGE, languageTag).apply();
+                lotteryView.setLanguage(languageTag, languageContext);
+                dialog.dismiss();
+            });
+        }
+        scroll.addView(options);
+        content.addView(scroll, new LinearLayout.LayoutParams(-1, dp(420)));
+        dialog.setContentView(content);
+        dialog.show();
+        clearBottomSheetOuterBackground(dialog);
     }
 
     @NonNull
+    private void clearBottomSheetOuterBackground(BottomSheetDialog dialog) {
+        View bottomSheet = dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            bottomSheet.setBackgroundColor(Color.BLACK);
+            ViewCompat.setBackgroundTintList(bottomSheet, android.content.res.ColorStateList.valueOf(Color.BLACK));
+        }
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
     private LinearLayout sheetContainer(Context context) {
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(dp(24), dp(12), dp(24), dp(28));
+        layout.setLayoutDirection(languageContext == null ? View.LAYOUT_DIRECTION_LTR
+                : languageContext.getResources().getConfiguration().getLayoutDirection());
         GradientDrawable background = new GradientDrawable();
         background.setColor(0xFF11151D);
         background.setCornerRadii(new float[]{dp(24), dp(24), dp(24), dp(24), 0, 0, 0, 0});
@@ -225,7 +336,8 @@ public class MainActivity extends AppCompatActivity {
         view.setTextColor(0xFFE8EAF0);
         view.setGravity(Gravity.CENTER);
         view.setBackground(roundRect(0xFF202632, 18));
-        view.setContentDescription(symbol.equals("+") ? "인원 한 명 늘리기" : "인원 한 명 줄이기");
+        view.setContentDescription(symbol.equals("+")
+                ? text(R.string.add_one) : text(R.string.remove_one));
         return view;
     }
 
@@ -236,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
         view.setTextSize(38);
         view.setGravity(Gravity.CENTER);
         view.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-        view.setContentDescription("선택할 인원 " + value + "명");
+        view.setContentDescription(text(R.string.selected_count, value));
         return view;
     }
 
@@ -260,5 +372,13 @@ public class MainActivity extends AppCompatActivity {
 
     private int dp(float value) {
         return Math.round(value * getResources().getDisplayMetrics().density);
+    }
+
+    private String text(int stringId) {
+        return languageContext.getString(stringId);
+    }
+
+    private String text(int stringId, int value) {
+        return languageContext.getString(stringId, value);
     }
 }

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">የአሸናፊዎች ብዛት</string><string name="count_max">እስከ 20 አሸናፊዎች ይምረጡ</string><string name="apply">ተግብር</string>
+    <string name="add_one">አንድ አሸናፊ ጨምር</string><string name="remove_one">አንድ አሸናፊ ቀንስ</string><string name="selected_count">የተመረጡ አሸናፊዎች፦ %1$d</string>
+    <string name="guide_title">የጣት እጣ ማውጫ</string><string name="guide_intro">በመጀመሪያ የአሸናፊዎችን ብዛት ይምረጡ፣ ከዚያ ጣቶችዎን በስክሪኑ ላይ ያድርጉ።</string>
+    <string name="guide_step1_title">የአሸናፊዎችን ብዛት ይምረጡ</string><string name="guide_step1_detail">ከታች ባለው SELECT WINNERS ቁጥር ላይ ይንኩ።</string>
+    <string name="guide_step2_title">ጣቶችዎን አድርገው ይጠብቁ</string><string name="guide_step2_detail">ቆጠራው እንዲጀምር ለ3 ሰከንድ ይያዙ።</string>
+    <string name="guide_step3_title">ቆጠራው ካበቃ በኋላ ውጤቱን ይመልከቱ</string><string name="guide_step3_detail">በንዝረት ምልክት የተመረጡ ጣቶችና ደረጃቸው ይታያሉ።</string>
+    <string name="start">ጀምር</string><string name="back">ተመለስ</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">ጣቶችዎን በስክሪኑ ላይ ያድርጉ</string><string name="prompt_need_one">አንድ ጣት በስክሪኑ ላይ ያድርጉ</string><string name="prompt_need_many">%1$d ጣቶችን በስክሪኑ ላይ ያድርጉ</string><string name="prompt_need_detail">አሁን %1$d · ከፍተኛው 20</string>
+    <string name="hold">እንዳሉ ይቆዩ</string><string name="checking">የጣቶች ብዛት በመፈተሽ ላይ</string><string name="selection_complete">ምርጫው ተጠናቋል</string><string name="restart">↻   እንደገና ጀምር</string><string name="please_wait">እባክዎ ይጠብቁ</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery። ለመጀመር ጣቶችዎን በስክሪኑ ላይ ያድርጉ። አሸናፊዎችን ለመቀየር ከታች ያለውን ቁጥር ይንኩ። መመሪያ ለማየት ከላይ ? ይንኩ።</string>
+    <string name="access_need_more">%1$d ጣቶች ያስፈልጋሉ። አሁን %2$d በስክሪኑ ላይ አሉ።</string><string name="access_waiting">%1$d ጣቶች በስክሪኑ ላይ አሉ። እጣው እንዲጀምር ለ3 ሰከንድ ይያዙ።</string>
+    <string name="access_countdown">ቆጠራው ጀምሯል። እጣው በተቆለፉት የጣቶች ቦታዎች ይቀጥላል።</string><string name="access_done">እጣው ተጠናቋል። ውጤቱ ታይቷል። አዲስ እጣ ለመጀመር እንደገና ጀምር ይንኩ።</string>
+    <string name="language_accessibility">የቋንቋ መምረጫ። ቋንቋውን ከላይ በቀኝ በኩል ይቀይሩ።</string><string name="language_sheet_title">ቋንቋ ይምረጡ</string><string name="language_sheet_description">ሊጠቀሙበት የሚፈልጉትን ቋንቋ ይምረጡ።</string>
+</resources>

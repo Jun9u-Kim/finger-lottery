@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Kazanan sayısını seçin</string><string name="count_max">En fazla 20 kazanan seçin</string><string name="apply">Uygula</string>
+    <string name="add_one">Bir kazanan ekle</string><string name="remove_one">Bir kazanan çıkar</string><string name="selected_count">Seçilen kazananlar: %1$d</string>
+    <string name="guide_title">Parmaklarla çekiliş</string><string name="guide_intro">Kaç kazanan olacağını seçin, sonra parmaklarınızı ekrana koyun.</string>
+    <string name="guide_step1_title">Kazanan sayısını belirleyin</string><string name="guide_step1_detail">Alttaki SELECT WINNERS sayısına dokunun.</string>
+    <string name="guide_step2_title">Parmaklarınızı koyup bekleyin</string><string name="guide_step2_detail">Geri sayımın başlaması için 3 saniye basılı tutun.</string>
+    <string name="guide_step3_title">Geri sayımdan sonra sonucu görün</string><string name="guide_step3_detail">Seçilen parmaklar ve sıraları titreşimle birlikte gösterilir.</string>
+    <string name="start">Başla</string><string name="back">Geri</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Parmaklarınızı ekrana koyun</string><string name="prompt_need_one">Ekrana 1 parmak koyun</string><string name="prompt_need_many">Ekrana %1$d parmak koyun</string><string name="prompt_need_detail">Şu an %1$d · En fazla 20</string>
+    <string name="hold">Parmaklarınızı sabit tutun</string><string name="checking">Parmak sayısı kontrol ediliyor</string><string name="selection_complete">Seçim tamamlandı</string><string name="restart">↻   Yeniden başla</string><string name="please_wait">Lütfen bekleyin</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Başlamak için parmaklarınızı ekrana koyun. Kazanan sayısını değiştirmek için alttaki sayıya dokunun. Talimatlar için üstteki ? işaretine dokunun.</string>
+    <string name="access_need_more">%1$d parmak gerekiyor. Şu an ekranda %2$d parmak var.</string><string name="access_waiting">Ekranda %1$d parmak var. Çekilişi başlatmak için 3 saniye basılı tutun.</string>
+    <string name="access_countdown">Geri sayım başladı. Çekiliş, kilitlenen parmak konumlarından devam eder.</string><string name="access_done">Çekiliş tamamlandı ve sonuçlar gösteriliyor. Yeni çekiliş için Yeniden başla seçeneğine dokunun.</string>
+    <string name="language_accessibility">Dil seçici. Dili sağ üst köşeden değiştirin.</string><string name="language_sheet_title">Dil seçin</string><string name="language_sheet_description">Kullanmak istediğiniz dili seçin.</string>
+</resources>

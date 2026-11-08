@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Finger Lottery</string>
+    <string name="count_title">Elige cuántos ganadores</string><string name="count_max">Elige hasta 20 ganadores</string><string name="apply">Aplicar</string>
+    <string name="add_one">Añadir un ganador</string><string name="remove_one">Quitar un ganador</string><string name="selected_count">Ganadores elegidos: %1$d</string>
+    <string name="guide_title">Sorteo con los dedos</string><string name="guide_intro">Elige cuántos ganadores habrá y coloca los dedos en la pantalla.</string>
+    <string name="guide_step1_title">Elige el número de ganadores</string><string name="guide_step1_detail">Toca el número de SELECT WINNERS en la parte inferior.</string>
+    <string name="guide_step2_title">Coloca los dedos y espera</string><string name="guide_step2_detail">Mantenlos durante 3 segundos para iniciar la cuenta atrás.</string>
+    <string name="guide_step3_title">Consulta el resultado al terminar</string><string name="guide_step3_detail">Los dedos elegidos y sus puestos aparecerán junto con una vibración.</string>
+    <string name="start">Empezar</string><string name="back">Volver</string>
+    <string name="status_done">RESULT IS IN</string><string name="status_countdown">POSITIONS LOCKED</string><string name="status_ready">READY TO DRAW</string><string name="status_fingers">FINGERS ON SCREEN</string>
+    <string name="prompt_empty">Coloca los dedos en la pantalla</string><string name="prompt_need_one">Coloca 1 dedo en la pantalla</string><string name="prompt_need_many">Coloca %1$d dedos en la pantalla</string><string name="prompt_need_detail">Ahora %1$d · Máx. 20</string>
+    <string name="hold">No muevas los dedos</string><string name="checking">Comprobando los dedos</string><string name="selection_complete">Selección completada</string><string name="restart">↻   Empezar de nuevo</string><string name="please_wait">Espera un momento</string><string name="footer_winners">SELECT WINNERS</string>
+    <string name="access_home">Finger Lottery. Coloca los dedos en la pantalla para empezar. Toca el número de abajo para cambiar los ganadores. Toca ? arriba para ver las instrucciones.</string>
+    <string name="access_need_more">Se necesitan %1$d dedos. Hay %2$d en la pantalla.</string><string name="access_waiting">Hay %1$d dedos en la pantalla. Mantenlos 3 segundos para iniciar el sorteo.</string>
+    <string name="access_countdown">La cuenta atrás ha comenzado. El sorteo seguirá desde las posiciones fijadas.</string><string name="access_done">El sorteo terminó. Se muestran los resultados. Toca Empezar de nuevo para hacer otro sorteo.</string>
+    <string name="language_accessibility">Selector de idioma. Cambia el idioma arriba a la derecha.</string><string name="language_sheet_title">Elegir idioma</string><string name="language_sheet_description">Selecciona el idioma que quieres usar.</string>
+</resources>
