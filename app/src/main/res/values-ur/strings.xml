@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">رازداری کے اختیارات</string>
     <string name="count_title">فاتحین کی تعداد</string><string name="count_max">زیادہ سے زیادہ 20 فاتح منتخب کریں</string><string name="apply">لاگو کریں</string>
     <string name="add_one">ایک فاتح بڑھائیں</string><string name="remove_one">ایک فاتح کم کریں</string><string name="selected_count">منتخب فاتحین: %1$d</string>
     <string name="guide_title">فنگر لاٹری</string><string name="guide_intro">پہلے فاتحین کی تعداد منتخب کریں، پھر اسکرین پر انگلیاں رکھیں۔</string>

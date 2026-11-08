@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">گزینه‌های حریم خصوصی</string>
     <string name="count_title">تعداد برندگان</string><string name="count_max">حداکثر ۲۰ برنده انتخاب کنید</string><string name="apply">اعمال</string>
     <string name="add_one">افزودن یک برنده</string><string name="remove_one">حذف یک برنده</string><string name="selected_count">برندگان انتخاب‌شده: %1$d</string>
     <string name="guide_title">قرعه‌کشی با انگشت</string><string name="guide_intro">تعداد برندگان را انتخاب کنید، سپس انگشت‌ها را روی صفحه بگذارید.</string>

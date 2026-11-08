@@ -2,6 +2,7 @@ package com.lgtm.finger_lottery;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.LocaleList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -60,7 +61,10 @@ final class AppLanguage {
 
     static Context localizedContext(Context base, String languageTag) {
         Configuration configuration = new Configuration(base.getResources().getConfiguration());
-        configuration.setLocale(Locale.forLanguageTag(languageTag));
+        Locale locale = Locale.forLanguageTag(languageTag);
+        configuration.setLocale(locale);
+        configuration.setLocales(new LocaleList(locale));
+        configuration.setLayoutDirection(locale);
         return base.createConfigurationContext(configuration);
     }
 }

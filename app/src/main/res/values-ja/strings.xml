@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">プライバシー設定</string>
     <string name="count_title">当選人数を選択</string><string name="count_max">当選者は最大20人まで選べます</string><string name="apply">適用</string>
     <string name="add_one">当選者を1人増やす</string><string name="remove_one">当選者を1人減らす</string><string name="selected_count">当選者：%1$d人</string>
     <string name="guide_title">指でくじ引き</string><string name="guide_intro">当選人数を選び、画面に指を置いてください。</string>

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">የግላዊነት አማራጮች</string>
     <string name="count_title">የአሸናፊዎች ብዛት</string><string name="count_max">እስከ 20 አሸናፊዎች ይምረጡ</string><string name="apply">ተግብር</string>
     <string name="add_one">አንድ አሸናፊ ጨምር</string><string name="remove_one">አንድ አሸናፊ ቀንስ</string><string name="selected_count">የተመረጡ አሸናፊዎች፦ %1$d</string>
     <string name="guide_title">የጣት እጣ ማውጫ</string><string name="guide_intro">በመጀመሪያ የአሸናፊዎችን ብዛት ይምረጡ፣ ከዚያ ጣቶችዎን በስክሪኑ ላይ ያድርጉ።</string>

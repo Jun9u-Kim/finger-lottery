@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">خيارات الخصوصية</string>
     <string name="count_title">اختر عدد الفائزين</string><string name="count_max">اختر ما يصل إلى 20 فائزًا</string><string name="apply">تطبيق</string>
     <string name="add_one">إضافة فائز واحد</string><string name="remove_one">إزالة فائز واحد</string><string name="selected_count">الفائزون المختارون: %1$d</string>
     <string name="guide_title">قرعة الأصابع</string><string name="guide_intro">اختر عدد الفائزين، ثم ضع أصابعك على الشاشة.</string>

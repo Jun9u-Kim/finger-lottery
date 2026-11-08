@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">गोपनीयता विकल्प</string>
     <string name="count_title">विजेताओं की संख्या</string><string name="count_max">अधिकतम 20 विजेता चुनें</string><string name="apply">लागू करें</string>
     <string name="add_one">एक विजेता जोड़ें</string><string name="remove_one">एक विजेता हटाएँ</string><string name="selected_count">चुने गए विजेता: %1$d</string>
     <string name="guide_title">Finger Lottery</string><string name="guide_intro">विजेताओं की संख्या चुनें, फिर स्क्रीन पर उंगलियाँ रखें।</string>

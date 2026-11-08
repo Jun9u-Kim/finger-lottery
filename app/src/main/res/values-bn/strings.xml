@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">গোপনীয়তার বিকল্প</string>
     <string name="count_title">বিজয়ীর সংখ্যা</string><string name="count_max">সর্বোচ্চ ২০ জন বিজয়ী বেছে নিন</string><string name="apply">প্রয়োগ করুন</string>
     <string name="add_one">একজন বিজয়ী যোগ করুন</string><string name="remove_one">একজন বিজয়ী বাদ দিন</string><string name="selected_count">নির্বাচিত বিজয়ী: %1$d</string>
     <string name="guide_title">ফিঙ্গার লটারি</string><string name="guide_intro">প্রথমে বিজয়ীর সংখ্যা বেছে নিয়ে স্ক্রিনে আঙুল রাখুন।</string>

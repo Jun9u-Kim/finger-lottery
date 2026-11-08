@@ -5,38 +5,42 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Bundle;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.window.SplashScreen;
 import android.widget.LinearLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.os.LocaleListCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.UserMessagingPlatform;
 
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "finger_lottery_settings";
     private static final String PREF_TARGET = "target_count";
     private static final String PREF_LANGUAGE = "language";
     private static final String PREF_GUIDE_SHOWN = "guide_shown";
-    private static final long SPLASH_HOLD_MS = 1000L;
 
     private int targetCount = 1;
     private String languageTag = "ko";
     private Context languageContext;
     private NeonLotteryView lotteryView;
+    private ConsentInformation consentInformation;
+    private boolean privacyOptionsRequired;
+    private boolean consentFlowFinished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,48 +49,71 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences(PREFS, MODE_PRIVATE);
         targetCount = preferences.getInt(PREF_TARGET, 1);
         languageTag = AppLanguage.find(preferences.getString(PREF_LANGUAGE, "ko")).tag;
+        applyStoredLanguage();
         languageContext = AppLanguage.localizedContext(this, languageTag);
         configureSystemBars();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            SplashScreen splashScreen = getSplashScreen();
-            splashScreen.setOnExitAnimationListener(splashView ->
-                    splashView.postDelayed(splashView::remove, SPLASH_HOLD_MS));
-            showMainScreen(preferences);
-        } else {
-            new Handler(Looper.getMainLooper()).postDelayed(
-                    () -> showMainScreen(preferences), SPLASH_HOLD_MS);
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        showMainScreen(preferences);
+        requestConsentThenStart(preferences, savedInstanceState == null);
+    }
+
+    private void applyStoredLanguage() {
+        String appLanguageTag = AppCompatDelegate.getApplicationLocales().toLanguageTags();
+        if (appLanguageTag.isEmpty()) {
+            if (!"ko".equals(languageTag)) {
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageTag));
+            }
+        } else if (!appLanguageTag.equalsIgnoreCase(languageTag)) {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageTag));
         }
     }
 
-    private void showWordmarkSplash(SharedPreferences preferences) {
-        LinearLayout splash = new LinearLayout(this);
-        splash.setOrientation(LinearLayout.VERTICAL);
-        splash.setGravity(Gravity.CENTER);
-        splash.setBackgroundColor(Color.BLACK);
-
-        TextView finger = new TextView(this);
-        finger.setText("FINGER");
-        finger.setTextColor(Color.WHITE);
-        finger.setTextSize(30);
-        finger.setLetterSpacing(0.12f);
-        finger.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
-        finger.setGravity(Gravity.CENTER);
-
-        TextView lottery = new TextView(this);
-        lottery.setText("LOTTERY");
-        lottery.setTextColor(0xFF9AFBDE);
-        lottery.setTextSize(30);
-        lottery.setLetterSpacing(0.12f);
-        lottery.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
-        lottery.setGravity(Gravity.CENTER);
-
-        splash.addView(finger, new LinearLayout.LayoutParams(-1, -2));
-        splash.addView(lottery, new LinearLayout.LayoutParams(-1, -2));
-        setContentView(splash);
-        new Handler(Looper.getMainLooper()).postDelayed(
-                () -> showMainScreen(preferences), SPLASH_HOLD_MS);
+    private void requestConsentThenStart(SharedPreferences preferences, boolean showStartupAd) {
+        ConsentRequestParameters parameters = new ConsentRequestParameters.Builder().build();
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                parameters,
+                () -> {
+                    updatePrivacyOptionsRequirement();
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(this, formError -> {
+                        updatePrivacyOptionsRequirement();
+                        continueAfterConsent(preferences, showStartupAd);
+                    });
+                },
+                requestError -> {
+                    updatePrivacyOptionsRequirement();
+                    continueAfterConsent(preferences, showStartupAd);
+                });
     }
+
+    private void continueAfterConsent(SharedPreferences preferences, boolean showStartupAd) {
+        if (consentFlowFinished || isFinishing() || isDestroyed()) return;
+        consentFlowFinished = true;
+        boolean canRequestAds = consentInformation.canRequestAds();
+        FingerLotteryApplication ads = (FingerLotteryApplication) getApplication();
+        ads.setAdsAllowed(canRequestAds);
+        if (canRequestAds && showStartupAd) {
+            ads.showStartupNativeAd(this, () -> showGuideIfNeeded(preferences));
+        } else {
+            showGuideIfNeeded(preferences);
+        }
+    }
+
+    private void updatePrivacyOptionsRequirement() {
+        privacyOptionsRequired = consentInformation.getPrivacyOptionsRequirementStatus()
+                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED;
+    }
+
+    private void showPrivacyOptions() {
+        if (consentInformation == null) return;
+        UserMessagingPlatform.showPrivacyOptionsForm(this, formError -> {
+            updatePrivacyOptionsRequirement();
+            boolean canRequestAds = consentInformation.canRequestAds();
+            ((FingerLotteryApplication) getApplication()).setAdsAllowed(canRequestAds);
+        });
+    }
+
     private void showMainScreen(SharedPreferences preferences) {
         if (isFinishing() || isDestroyed()) return;
         lotteryView = new NeonLotteryView(this, new NeonLotteryView.Listener() {
@@ -109,12 +136,17 @@ public class MainActivity extends AppCompatActivity {
         lotteryView.setLanguage(languageTag, languageContext);
         lotteryView.setPadding(0, 0, 0, 0);
         ViewCompat.setOnApplyWindowInsetsListener(lotteryView, (view, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars()
+                    | WindowInsetsCompat.Type.displayCutout());
             view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
             return WindowInsetsCompat.CONSUMED;
         });
         setContentView(lotteryView);
+        ViewCompat.requestApplyInsets(lotteryView);
+    }
 
+    private void showGuideIfNeeded(SharedPreferences preferences) {
+        if (lotteryView == null || isFinishing() || isDestroyed()) return;
         if (!preferences.getBoolean(PREF_GUIDE_SHOWN, false)) {
             lotteryView.postDelayed(() -> showGuideSheet(true), 150L);
         }
@@ -122,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureSystemBars() {
         Window window = getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
         window.setStatusBarColor(Color.rgb(5, 7, 11));
         window.setNavigationBarColor(Color.rgb(5, 7, 11));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -192,6 +225,15 @@ public class MainActivity extends AppCompatActivity {
         addGuideStep(content, "02", text(R.string.guide_step2_title), text(R.string.guide_step2_detail));
         addGuideStep(content, "03", text(R.string.guide_step3_title), text(R.string.guide_step3_detail));
 
+        if (privacyOptionsRequired) {
+            TextView privacyOptions = actionButton(text(R.string.privacy_options));
+            privacyOptions.setContentDescription(text(R.string.privacy_options));
+            LinearLayout.LayoutParams privacyParams = new LinearLayout.LayoutParams(-1, dp(48));
+            privacyParams.topMargin = dp(8);
+            content.addView(privacyOptions, privacyParams);
+            privacyOptions.setOnClickListener(v -> showPrivacyOptions());
+        }
+
         TextView action = actionButton(text(firstRun ? R.string.start : R.string.back));
         LinearLayout.LayoutParams actionParams = new LinearLayout.LayoutParams(-1, dp(54));
         actionParams.topMargin = dp(25);
@@ -213,7 +255,10 @@ public class MainActivity extends AppCompatActivity {
         addText(content, text(R.string.language_sheet_description), 14, 0xFF969DAC, false,
                 0, 0, 0, 16);
 
-        ScrollView scroll = new ScrollView(languageContext);
+        NestedScrollView scroll = new NestedScrollView(languageContext);
+        scroll.setFillViewport(true);
+        scroll.setNestedScrollingEnabled(true);
+        scroll.setVerticalScrollBarEnabled(true);
         LinearLayout options = new LinearLayout(languageContext);
         options.setOrientation(LinearLayout.VERTICAL);
         for (AppLanguage.Option option : AppLanguage.OPTIONS) {
@@ -230,10 +275,9 @@ public class MainActivity extends AppCompatActivity {
             options.addView(row, rowParams);
             row.setOnClickListener(v -> {
                 languageTag = option.tag;
-                languageContext = AppLanguage.localizedContext(this, languageTag);
                 preferences.edit().putString(PREF_LANGUAGE, languageTag).apply();
-                lotteryView.setLanguage(languageTag, languageContext);
                 dialog.dismiss();
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(languageTag));
             });
         }
         scroll.addView(options);

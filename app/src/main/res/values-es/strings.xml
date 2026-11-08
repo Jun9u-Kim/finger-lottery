@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Finger Lottery</string>
+    <string name="privacy_options">Opciones de privacidad</string>
     <string name="count_title">Elige cuántos ganadores</string><string name="count_max">Elige hasta 20 ganadores</string><string name="apply">Aplicar</string>
     <string name="add_one">Añadir un ganador</string><string name="remove_one">Quitar un ganador</string><string name="selected_count">Ganadores elegidos: %1$d</string>
     <string name="guide_title">Sorteo con los dedos</string><string name="guide_intro">Elige cuántos ganadores habrá y coloca los dedos en la pantalla.</string>
